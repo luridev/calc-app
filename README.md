@@ -2,6 +2,9 @@
 
 Simple calculator on Vue + Vite
 
+### Live in GitHub Pages 
+https://luridev.github.io/calc-app/
+
 ### Tests with Vitest
 `npm run test`
 
