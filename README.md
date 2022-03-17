@@ -1,8 +1,12 @@
 # calc-app
 
-Calculator on Vue + Vite
+Simple calculator on Vue + Vite
 
-# Use grid-template-areas for layout
+### Tests with Vitest
+`npm run test`
+
+
+### Use grid-template-areas for layout
 
 ```
 grid-template-areas:
