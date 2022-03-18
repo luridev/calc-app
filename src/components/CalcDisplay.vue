@@ -32,6 +32,7 @@ const styleObject = ref({
   text-align: right;
   margin: 0;
   padding: 5px;
+  overflow: hidden;
 
   color: var(--calc-primary-text-color);
   background-color: var(--calc-primary-bg-color);

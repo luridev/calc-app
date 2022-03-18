@@ -4,17 +4,17 @@ import CalcDisplay from "./CalcDisplay.vue";
 import { calcMath, calcMemory } from "./CalcMath.js";
 import { ref, computed } from "vue";
 
+let calculated = false;
+let calcError = ref(false);
+
 let displayValue = ref(null);
 let displayMessage = ref(null);
-
-const isDisplayEmpty = computed(() => displayValue.value === null);
 
 let operand1 = null;
 let operand2 = null;
 let operator = null;
 
-let calculated = false;
-let calcError = ref(false);
+calcMath.maxNumberLength = 12;
 
 const numbers = new Map([
   ["number9", "9"],
@@ -52,6 +52,8 @@ const memories = new Map([
   ["memoryRead", "MR"],
   ["memoryClear", "MC"],
 ]);
+
+const isDisplayEmpty = computed(() => displayValue.value === null);
 
 function clearAll() {
   operand1 = null;
@@ -141,7 +143,9 @@ function numbersHandler(num) {
     displayValue.value = num;
     calculated = false;
   } else {
-    displayValue.value = `${displayValue.value ?? ""}${num}`;
+    if ((displayValue.value?.length ?? 0) < calcMath.maxNumberLength) {
+      displayValue.value = `${displayValue.value ?? ""}${num}`;
+    }
   }
 }
 
@@ -248,8 +252,10 @@ const handler = (event) => {
 <style scoped>
 .calc-container {
   width: 400px;
-  margin: 0 auto;
+  max-width: 100%;
+  margin: 10px auto;
   padding: 30px 10px 20px;
+  box-sizing: border-box;
 
   border-radius: 8px;
   background-color: var(--calc-primary-bg-color);
@@ -257,16 +263,35 @@ const handler = (event) => {
   display: grid;
   justify-content: center;
   grid-template-rows: 100px repeat(6, 75px);
-  grid-template-columns: repeat(auto-fill, 75px);
+  grid-auto-columns: minmax(0, 1fr);
+  grid-auto-flow: column;
   grid-row-gap: 6px;
   grid-column-gap: 6px;
   grid-template-areas:
-    "display    display    display      display        display"
-    "clearAll   power      sqrt         backspace      backspace"
-    "memorySave memoryRead memoryClear  memoryIncrease memoryDecrease"
-    "number7    number8    number9      multiplication division"
-    "number4    number5    number6      subtraction    sign"
-    "number1    number2    number3      addition       calculate"
-    "number0    number0    separator    addition       calculate";
+    "display    display    display     display        display"
+    "clearAll   power      sqrt        backspace      backspace"
+    "memorySave memoryRead memoryClear memoryIncrease memoryDecrease"
+    "number7    number8    number9     multiplication division"
+    "number4    number5    number6     subtraction    sign"
+    "number1    number2    number3     addition       calculate"
+    "number0    number0    separator   addition       calculate";
+}
+
+@media screen and (orientation: landscape) and (max-height: 500px) {
+  .calc-container {
+    width: 700px;
+
+    grid-template-rows: repeat(6, 1fr);
+    grid-template-areas:
+      "display display display   backspace      clearAll  clearAll"
+      "display display display   power          sqrt      memorySave"
+      "number7 number8 number9   multiplication division  memoryRead"
+      "number4 number5 number6   subtraction    sign      memoryClear"
+      "number1 number2 number3   addition       calculate memoryIncrease"
+      "number0 number0 separator addition       calculate memoryDecrease";
+  }
+}
+
+@media screen and (orientation: portrait) {
 }
 </style>

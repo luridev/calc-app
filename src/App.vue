@@ -18,11 +18,14 @@ import Calculator from "./components/Calculator.vue";
   --calc-error-color: #d60000;
 }
 
+body {
+  background-color: #fefefe;
+}
+
 #app {
   font-family: "Tomorrow", monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  margin-top: 60px;
 }
 </style>
