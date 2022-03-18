@@ -1,6 +1,6 @@
 # calc-app
 
-Simple calculator on Vue + Vite
+Simple calculator on **Vue** + **Vite**
 
 ### Live in GitHub Pages 
 https://luridev.github.io/calc-app/
@@ -8,8 +8,7 @@ https://luridev.github.io/calc-app/
 ### Tests with Vitest
 `npm run test`
 
-
-### Use grid-template-areas for layout
+### Grid template areas for layout
 
 ```
 grid-template-areas:
@@ -22,10 +21,6 @@ grid-template-areas:
     "number0    number0    separator    addition       calculate";
 ```
 
-# Vue 3 + Vite
+### Change layout on change orientation
+![calc-orientation](https://user-images.githubusercontent.com/89837623/159049675-2222f68e-f0f6-4ff1-a859-f689a490888c.png)
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
-
-## Recommended IDE Setup
-
-- [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
